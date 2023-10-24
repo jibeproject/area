@@ -185,7 +185,7 @@ postcode_area_poi[is.na(postcode_area_poi)] <- 0
 ####################
 #PART 4: add population counts
 ####################
-pop_counts_pc <- utils::read.csv(file = file.path(IMD/Postcode_Estimates_Table_1.csv"), header = TRUE)
+pop_counts_pc <- utils::read.csv(file = file.path("IMD/Postcode_Estimates_Table_1.csv"), header = TRUE)
 pc_a_f <- utils::read.csv(file = file.path("IMD/rft-headcounts-and-household-estimates/R2_5_postcode_estimates_revised_17_10_2013/Postcode_Estimates_1_A_F.csv"), header = TRUE)
 pc_g_l <- utils::read.csv(file = file.path("IMD/rft-headcounts-and-household-estimates/R2_5_postcode_estimates_revised_17_10_2013/Postcode_Estimates_1_G_L.csv"), header = TRUE)
 pc_m_r <- utils::read.csv(file = file.path("IMD/rft-headcounts-and-household-estimates/R2_5_postcode_estimates_revised_17_10_2013/Postcode_Estimates_1_M_R.csv"), header = TRUE)
