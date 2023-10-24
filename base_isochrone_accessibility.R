@@ -29,6 +29,8 @@ conc_hull_all <- st_zm(conc_hull_all) #drop Z and M values
 ####################
 poi_code <- utils::read.csv(file = file.path("ULIUK_POI_codes.csv"), header = TRUE, colClasses='character')
 colnames(poi_code)[1] <- "pointx_class"
+#add leading zeros
+poi_code <- stringr::str_pad(poi_code$pointx_class, 8, side = "left", pad = 0)
 
 #keep only relevant POIs
 gm_poi <- gm_poi[gm_poi$pointx_class %in% poi_code$pointx_class,]
