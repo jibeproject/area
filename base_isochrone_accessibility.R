@@ -236,9 +236,9 @@ sum(oa_pop$Age..All.usual.residents..measures..Value) - sum(postcode_cent_poi$To
 ####################
 #PART 6: Add the binary metric for the 12 categories
 ####################
-iso_area <- st_read("02_DataOutput/area/postcode_poi_pop.gpkg", layer = "area")
-iso_voro <- st_read("02_DataOutput/area/postcode_poi_pop.gpkg", "Voronoi_isochrone")
-iso_cent <- st_read("02_DataOutput/area/postcode_poi_pop.gpkg", "centroid")
+iso_area <- st_read("../postcode_poi_pop.gpkg", layer = "area")
+iso_voro <- st_read("../postcode_poi_pop.gpkg", "Voronoi_isochrone")
+iso_cent <- st_read("../postcode_poi_pop.gpkg", "centroid")
 
 #add 12 categories columns
 cat <- c("soc_cul", "edu", "prim_hlth", "hlth_res", "rec_sport", "early_yr",
