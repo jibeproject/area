@@ -214,7 +214,7 @@ st_write(postcode_area_poi, file.path(paste0("../postcode_poi_pop.gpkg")), "area
 ####################
 rm(list=setdiff(ls(), c("pc_cent", "pop_counts_pc", "postcode_cent_poi"))) #keep few objects and remove everything else from postcode_dataset.RData environment
 
-oa <- utils::read.csv(file = file.path("..//KS102EW.csv"), header = TRUE)
+oa <- utils::read.csv(file = file.path("KS102EW.csv"), header = TRUE)
 colnames(oa)[3] <- "OA11CD"
 oa_bounds <- st_read(file.path("Output_Areas__December_2011__Boundaries_EW_BFC.shp"))
 gm_oa_bounds <- oa_bounds[oa_bounds$LAD16NM == "Tameside" |
@@ -237,7 +237,7 @@ sum(oa_pop$Age..All.usual.residents..measures..Value) - sum(postcode_cent_poi$To
 #PART 6: Add the binary metric for the 12 categories
 ####################
 iso_area <- st_read("../postcode_poi_pop.gpkg", layer = "area")
-iso_voro <- st_read("../postcode_poi_pop.gpkg", "Voronoi_isochrone")
+iso_voro <- st_read("../postcode_poi_pop.gpkg", "Voronoi_isochrone") #this is generated in QGIS from the centroid layer of the postcode_poi_pop.gpkg file
 iso_cent <- st_read("../postcode_poi_pop.gpkg", "centroid")
 
 #add 12 categories columns
