@@ -151,8 +151,8 @@ serv_area_pt_matrix <- as.data.frame.matrix(xtabs(poi_cnt ~ serv_area + pointx_c
 
 #merge the two matrices
 serv_area_pois_matrix <- serv_area_pois_matrix %>% select(-'10570738', -'10570756', -'10590732', -'10590759') #remove PT from POI dataset
-serv_area_pois_matrix <- merge(serv_area_pois_matrix, serv_area_pt_matrix, by = "row.names", all.x = TRUE)
-serv_area_pois_matrix[,"03180814"]
+serv_area_pois_matrix <- merge(serv_area_pois_matrix, serv_area_pt_matrix, by = "row.names", all.x = TRUE) #add PT from the DfT data
+serv_area_pois_matrix[,"03180814"]#check for consistency
 #add overall variety count
 serv_area_pois_matrix$various <- rowSums(serv_area_pois_matrix[,2:58] != 0) #!!!double check exactly which columns are being summarized
 colnames(serv_area_pois_matrix)[1] <- "serv_area"
@@ -161,8 +161,9 @@ colnames(serv_area_pois_matrix)[1] <- "serv_area"
 serv_area_pois_matrix[serv_area_pois_matrix$serv_area =="BL09FR",]
 serv_area_pois_matrix[serv_area_pois_matrix$serv_area =="BL00AA",]
 
-#rename pc_cent column
+#read in postcode centroind and boundaries
 pc_cent <- st_read("gm_pccents.shp")
+#rename pc_cent column
 colnames(pc_cent)[2] <- "serv_area"
 pc_cent$serv_area <- gsub(" ", "", pc_cent$serv_area, fixed = TRUE)
 pc_cent$serv_area <- gsub("  ", "", pc_cent$serv_area, fixed = TRUE)
@@ -214,7 +215,7 @@ st_write(postcode_area_poi, file.path(paste0("../postcode_poi_pop.gpkg")), "area
 ####################
 #PART 5: Tally OA to postcode population counts
 ####################
-rm(list=setdiff(ls(), c("pc_cent", "pop_counts_pc", "postcode_cent_poi"))) #keep few objects and remove everything else from postcode_dataset.RData environment
+rm(list=setdiff(ls(), c("pc_cent", "pop_counts_pc", "postcode_cent_poi"))) #keep few objects and remove everything else
 
 oa <- utils::read.csv(file = file.path("KS102EW.csv"), header = TRUE)
 colnames(oa)[3] <- "OA11CD"
